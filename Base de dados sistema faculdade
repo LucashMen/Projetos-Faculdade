@@ -1,0 +1,36 @@
+CREATE TABLE Alunos (
+    id_aluno INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    data_nascimento DATE,
+    endereco VARCHAR(200),
+    matricula VARCHAR(50) UNIQUE NOT NULL
+);
+
+CREATE TABLE Cursos (
+    id_curso INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    duracao INT NOT NULL
+);
+
+CREATE TABLE Materias (
+    id_materia INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    carga_horaria INT NOT NULL,
+    id_curso INT,
+    FOREIGN KEY (id_curso) REFERENCES Cursos(id_curso)
+);
+
+CREATE TABLE Professores (
+    id_professor INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    especializacao VARCHAR(100)
+);
+
+CREATE TABLE Turmas (
+    id_turma INT AUTO_INCREMENT PRIMARY KEY,
+    id_aluno INT,
+    id_materia INT,
+    nota DECIMAL(5,2),
+    presenca DECIMAL(5,2),
+    FOREIGN KEY (id_aluno) REFERENCES Alunos(id_aluno),
+    FOREIGN KEY (id_materia) REFERENCES
